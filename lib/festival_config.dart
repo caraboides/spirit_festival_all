@@ -21,30 +21,35 @@ const String weatherCityId = '6547727';
 
 class FestivalTheme {
   static final ThemeData theme = ThemeData(
-    primaryColor: Colors.grey[850],
-    accentColor: Color(0xFFa5ab62),
+    primaryColor: Color(0xFFa5ab62),
+    accentColor: Color(0xFFffa035),
+    buttonTheme: ButtonThemeData(
+      textTheme: ButtonTextTheme.primary,
+    ),
     textTheme: Typography.blackMountainView.copyWith(
       headline: TextStyle(
-        fontFamily: 'Roboto',
+        fontFamily: 'No Continue',
         fontSize: 28,
         color: Colors.black,
       ),
       display1: TextStyle(
-        fontFamily: 'Roboto',
+        fontFamily: 'No Continue',
         fontSize: 26,
         color: Colors.white,
       ),
       title: TextStyle(
-        fontFamily: 'Roboto',
+        fontFamily: 'No Continue',
         fontSize: 24,
         color: Colors.black,
       ),
     ),
   );
 
-  static final Color menuBackgroundColor = theme.primaryColor;
-  static final Color menuIconColor = theme.accentColor.withOpacity(0.87);
+  static final Color menuBackgroundColor = Colors.grey[850];
   static final Color dividerColor = Colors.grey[800];
+  static final Color menuFontColor = Color(0xFFd6102b);
+  static final Color menuIconColor = menuFontColor.withOpacity(0.87);
+  static final Color aboutBackgroundColor = Colors.grey[850];
 
   static final TextStyle appBarTextStyle = theme.textTheme.display1;
   static final TextStyle bandNameTextStyle = theme.textTheme.headline;
@@ -63,6 +68,6 @@ class FestivalTheme {
     color: Colors.black87,
   );
   static final TextStyle menuEntryTextStyle = theme.textTheme.title.copyWith(
-    color: theme.accentColor,
+    color: menuFontColor,
   );
 }

@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
 
   void _precacheImages(BuildContext context) {
     precacheImage(
-      AssetImage('assets/logo_textured.png'),
+      AssetImage('assets/icon_menu.png'),
       context,
       size: Size(304, 152),
     );

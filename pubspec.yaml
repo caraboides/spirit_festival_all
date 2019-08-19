@@ -35,16 +35,16 @@ flutter:
      - assets/initial_schedule.json
      - assets/bands.json
      - assets/logo.png
-     - assets/logo_textured.png
+     - assets/icon_menu.png
      - assets/mar.gif
 
   fonts:
-    - family: Pirata One
+    - family: No Continue
       fonts:
-        - asset: assets/PirataOne-Regular.ttf
+        - asset: assets/no_continue.ttf
 
 flutter_icons:
-  image_path: "assets/app_logo-1024.png"
+  image_path: "assets/icon.png"
   android: true
   adaptive_icon_background: "#000000"
-  adaptive_icon_foreground: "assets/app_logo-adaptive.png"
+  adaptive_icon_foreground: "assets/icon_adaptive.png"

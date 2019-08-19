@@ -30,9 +30,8 @@ class Menu extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Image.asset(
-              'assets/logo_textured.png',
-              width: 304,
-              height: 152,
+              'assets/icon_menu.png',
+              height: 300,
             ),
             ListTile(
               title: Text(

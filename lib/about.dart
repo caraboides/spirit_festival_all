@@ -68,7 +68,7 @@ class About extends StatelessWidget {
             style: FestivalTheme.appBarTextStyle,
           ),
         ),
-        backgroundColor: theme.primaryColor,
+        backgroundColor: FestivalTheme.aboutBackgroundColor,
         body: ListView(
           padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
           children: <Widget>[
@@ -80,8 +80,8 @@ class About extends StatelessWidget {
             Text(i18n.sourceCodeUnder),
             Align(
               alignment: Alignment.center,
-              child: _buildLink(
-                  theme, 'https://github.com/caraboides/spirit_app'),
+              child:
+                  _buildLink(theme, 'https://github.com/caraboides/spirit_app'),
             ),
             divider,
             SizedBox(height: 5),
@@ -110,9 +110,9 @@ class About extends StatelessWidget {
             _buildCreator(i18n.weatherDataBy, <Widget>[
               _buildLink(theme, 'https://openweathermap.org', shrink: true),
             ]),
-            _buildCreator(i18n.fontBy('Pirata One'), <Widget>[
-              _buildLink(theme, 'http://www.rfuenzalida.com/',
-                  label: 'Rodrigo Fuenzalida', shrink: true),
+            _buildCreator(i18n.fontBy('No Continue'), <Widget>[
+              _buildLink(theme, 'http://gomaricefont.web.fc2.com/',
+                  label: 'Goma Shin', shrink: true),
             ]),
             divider,
             GestureDetector(
