@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
 
-CrossAxisAlignment stageAlignment(String stage) =>
-    stage == 'Mainstage' ? CrossAxisAlignment.start : CrossAxisAlignment.end;
+CrossAxisAlignment stageAlignment(String stage) {
+  switch (stage) {
+    case 'Mainstage':
+      return CrossAxisAlignment.start;
+    case 'Stage II':
+      return CrossAxisAlignment.end;
+    default:
+      return CrossAxisAlignment.center;
+  }
+}
 
 ImmortalList<DateTime> get days => ImmortalList<DateTime>([
       DateTime(2019, 8, 29),
