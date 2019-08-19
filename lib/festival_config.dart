@@ -22,20 +22,20 @@ const String weatherCityId = '6547727';
 class FestivalTheme {
   static final ThemeData theme = ThemeData(
     primaryColor: Colors.grey[850],
-    accentColor: Color(0xFFD2D522),
+    accentColor: Color(0xFFa5ab62),
     textTheme: Typography.blackMountainView.copyWith(
       headline: TextStyle(
-        fontFamily: 'Pirata One',
+        fontFamily: 'Roboto',
         fontSize: 28,
         color: Colors.black,
       ),
       display1: TextStyle(
-        fontFamily: 'Pirata One',
+        fontFamily: 'Roboto',
         fontSize: 26,
         color: Colors.white,
       ),
       title: TextStyle(
-        fontFamily: 'Pirata One',
+        fontFamily: 'Roboto',
         fontSize: 24,
         color: Colors.black,
       ),
