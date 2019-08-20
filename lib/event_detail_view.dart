@@ -17,7 +17,7 @@ class EventDetailView extends StatelessWidget {
       String.fromCharCodes(country.runes.map((code) => code + 127397));
 
   String _getDescription(AppLocalizations i18n, Locale locale, BandData data) {
-    if (locale.languageCode == 'en' && data.textEn != null) {
+    if (locale.languageCode == 'en' && (data.textEn ?? '') != '') {
       return data.textEn;
     }
     return data.text ?? i18n.noInfo;
@@ -52,35 +52,39 @@ class EventDetailView extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          child: data.style == null || data.style.trim() == "" ? Container(): Row(
-            children: <Widget>[
-              SizedBox(
-                width: 75,
-                child: Text(
-                  '${i18n.style}:',
-                  style: FestivalTheme.bandDetailTextStyle,
+          child: data.style == null || data.style.trim() == ""
+              ? Container()
+              : Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 75,
+                      child: Text(
+                        '${i18n.style}:',
+                        style: FestivalTheme.bandDetailTextStyle,
+                      ),
+                    ),
+                    Text(data.style ?? i18n.noInfo),
+                  ],
                 ),
-              ),
-              Text(data.style ?? i18n.noInfo),
-            ],
-          ),
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          child:  data.roots == null || data.roots.trim() == "" ? Container():Row(
-            children: <Widget>[
-              SizedBox(
-                width: 75,
-                child: Text(
-                  '${i18n.roots}:',
-                  style: FestivalTheme.bandDetailTextStyle,
+          child: data.roots == null || data.roots.trim() == ""
+              ? Container()
+              : Row(
+                  children: <Widget>[
+                    SizedBox(
+                      width: 75,
+                      child: Text(
+                        '${i18n.roots}:',
+                        style: FestivalTheme.bandDetailTextStyle,
+                      ),
+                    ),
+                    Text(data.roots ?? i18n.noInfo),
+                  ],
                 ),
-              ),
-              Text(data.roots ?? i18n.noInfo),
-            ],
-          ),
         ),
-        if (data.spotify != null)
+        if ((data.spotify ?? '') != '')
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 15),
             child: FestivalTheme.primaryButton(
@@ -90,7 +94,7 @@ class EventDetailView extends StatelessWidget {
               },
             ),
           ),
-        if (data.image != null)
+        if ((data.image ?? '') != '')
           Padding(
             padding: EdgeInsets.only(top: 15),
             child: CachedNetworkImage(
@@ -114,7 +118,7 @@ class EventDetailView extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             data
-                .map<Widget>((d) => d.logo != "" && d.logo != null
+                .map<Widget>((d) => (d.logo ?? '') != ""
                     ? Container(
                         color: Colors.black,
                         child: CachedNetworkImage(
