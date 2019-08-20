@@ -52,7 +52,7 @@ class EventDetailView extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          child: Row(
+          child: data.style == null || data.style.trim() == "" ? Container(): Row(
             children: <Widget>[
               SizedBox(
                 width: 75,
@@ -67,7 +67,7 @@ class EventDetailView extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-          child: Row(
+          child:  data.roots == null || data.roots.trim() == "" ? Container():Row(
             children: <Widget>[
               SizedBox(
                 width: 75,
@@ -114,7 +114,7 @@ class EventDetailView extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             data
-                .map<Widget>((d) => d.logo != null
+                .map<Widget>((d) => d.logo != "" && d.logo != null
                     ? Container(
                         color: Colors.black,
                         child: CachedNetworkImage(
