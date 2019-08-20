@@ -75,8 +75,10 @@ class About extends StatelessWidget {
             Text(i18n.sourceCodeUnder),
             Align(
               alignment: Alignment.center,
-              child:
-                  _buildLink(theme, 'https://github.com/caraboides/spirit_festival_app'),
+              child: _buildLink(
+                theme,
+                'https://github.com/caraboides/spirit_festival_app',
+              ),
             ),
             divider,
             SizedBox(height: 5),
@@ -85,10 +87,17 @@ class About extends StatelessWidget {
             _buildCreator(
               'Christian Hennig',
               <Widget>[
-                _buildLink(theme, 'https://github.com/caraboides',
-                    shrink: true),
-                _buildLink(theme, 'https://twitter.com/carabiodes',
-                    label: '@carabiodes', shrink: true),
+                _buildLink(
+                  theme,
+                  'https://github.com/caraboides',
+                  shrink: true,
+                ),
+                _buildLink(
+                  theme,
+                  'https://twitter.com/carabiodes',
+                  label: '@carabiodes',
+                  shrink: true,
+                ),
               ],
               heartIcon: true,
             ),
@@ -106,15 +115,22 @@ class About extends StatelessWidget {
               _buildLink(theme, 'https://openweathermap.org', shrink: true),
             ]),
             _buildCreator(i18n.fontBy('No Continue'), <Widget>[
-              _buildLink(theme, 'http://gomaricefont.web.fc2.com/',
-                  label: 'Goma Shin', shrink: true),
+              _buildLink(
+                theme,
+                'http://gomaricefont.web.fc2.com/',
+                label: 'Goma Shin',
+                shrink: true,
+              ),
             ]),
             divider,
-            GestureDetector(
-              child: Image.asset('assets/mar.gif'),
-              onTap: () => launch('http://www.metalheadsagainstracism.org/'),
+            SizedBox(height: 5),
+            Text('Seenotrettung ist kein Verbrechen!'),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                _buildLink(theme, 'https://sea-watch.org/'),
+              ],
             ),
-            SizedBox(height: 8),
             divider,
             SizedBox(height: 5),
             FestivalTheme.primaryButton(

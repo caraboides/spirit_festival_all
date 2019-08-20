@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'festival_config.dart';
-import 'i18n.dart';
 import 'menu.dart';
 
 class FAQ extends StatelessWidget {
@@ -29,7 +28,7 @@ class FAQ extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               SizedBox(width: 10),
-              Text('●'), // TODO(SF) improve
+              Text('●', style: TextStyle(fontSize: 11)),
               SizedBox(width: 10),
               Expanded(child: item),
             ],
@@ -38,8 +37,6 @@ class FAQ extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final locale = Localizations.localeOf(context);
-    // final content = faqHeader + (locale.languageCode == 'en' ? faqEn : faq);
     final theme = Theme.of(context);
     return Scaffold(
       drawer: const Menu(),
@@ -218,53 +215,6 @@ class FAQ extends StatelessWidget {
                   'vertrauensvolle Obhut. Danke!',
             ]),
           ),
-          ..._buildSection(theme, 'Anfahrt', <Widget>[
-            Text(
-              'Adresse: Flugplatz / Altes Lager, 14913 Niedergörsdorf',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Text(
-              'Anreise mit Zug:',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            Text(
-              'Ganz einfach: Bis Berlin, dann mit der Regionalbahn nach Jüterbog.',
-            ),
-            Text(
-              'Unseren Shuttleservice können wir in diesem Jahr, aus verschiedenen '
-              'Gründen, nicht anbieten. Das finden wir selbst sehr bedauerlich.',
-            ),
-            Text(
-              'Die Taxiunternehmen am Bahnhof wissen allerdings Bescheid. Wenn '
-              'ihr einzeln anreist, bildet Gruppen und nehmt euch ein Großraumtaxi. '
-              'Die Fahrt zum Gelände kostest euch dann auch nicht mehr als unser '
-              'sonstiger Shuttle. Wir hätten es gerne anders gelöst, aber manchmal '
-              'sind selbst uns die Hände gebunden.',
-            ),
-            Text(
-              'Anreise mit dem Auto:',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-            ..._buildList([
-              'über die A9, Abfahrt Niemegk, dann die B 102 Richtung Jüterbog',
-              'über die A 13, Abfahrt Duben oder Freiwalde',
-              'über die A 10, Abfahrt Ludwigsfelde Ost',
-            ]),
-            Text(
-              'ab Altes Lager einfach der Ausschilderung folgen!!! (Und bitte lasst '
-              'die Beschilderung stehen. Festivalposter gibt es, sofern noch '
-              'vorhanden, am Infostand!',
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ]),
           ..._buildSection(
             theme,
             'Toiletten & Duschen',
