@@ -103,7 +103,7 @@ class Menu extends StatelessWidget {
                 Icons.verified_user,
                 color: FestivalTheme.menuIconColor,
               ),
-              onTap: () => launch("https://bit.ly/2YNzXmR"),
+              onTap: () => launch("https://bit.ly/2L3HSD8"),
             ),
           ],
         ),
