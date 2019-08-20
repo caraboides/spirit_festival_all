@@ -81,7 +81,7 @@ class About extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child:
-                  _buildLink(theme, 'https://github.com/caraboides/spirit_app'),
+                  _buildLink(theme, 'https://github.com/caraboides/spirit_festival_app'),
             ),
             divider,
             SizedBox(height: 5),
