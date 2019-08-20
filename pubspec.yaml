@@ -36,7 +36,6 @@ flutter:
      - assets/bands.json
      - assets/logo.png
      - assets/icon_menu.png
-     - assets/mar.gif
 
   fonts:
     - family: No Continue
