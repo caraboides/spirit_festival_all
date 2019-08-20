@@ -83,14 +83,11 @@ class EventDetailView extends StatelessWidget {
         if (data.spotify != null)
           Padding(
             padding: EdgeInsets.only(left: 20, right: 20, top: 15),
-            child: RaisedButton(
-              color: theme.accentColor,
+            child: FestivalTheme.primaryButton(
+              label: i18n.playOnSpotify,
               onPressed: () {
                 launch(data.spotify);
               },
-              child: Text(
-                i18n.playOnSpotify,
-              ),
             ),
           ),
         if (data.image != null)
@@ -111,12 +108,7 @@ class EventDetailView extends StatelessWidget {
     final isLiked = myScheduleController.mySchedule.isEventLiked(event.id);
     final locale = Localizations.localeOf(context);
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          i18n.eventDetailsHeader,
-          style: FestivalTheme.appBarTextStyle,
-        ),
-      ),
+      appBar: FestivalTheme.appBar(i18n.eventDetailsHeader),
       body: Container(
         alignment: Alignment.topCenter,
         child: ListView(

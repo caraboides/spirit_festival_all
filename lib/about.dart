@@ -62,12 +62,7 @@ class About extends StatelessWidget {
       ),
       child: Scaffold(
         drawer: const Menu(),
-        appBar: AppBar(
-          title: Text(
-            i18n.about,
-            style: FestivalTheme.appBarTextStyle,
-          ),
-        ),
+        appBar: FestivalTheme.appBar(i18n.about),
         backgroundColor: FestivalTheme.aboutBackgroundColor,
         body: ListView(
           padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 10),
@@ -122,10 +117,8 @@ class About extends StatelessWidget {
             SizedBox(height: 8),
             divider,
             SizedBox(height: 5),
-            RaisedButton(
-              color: theme.accentColor,
-              child: Text(
-                  MaterialLocalizations.of(context).viewLicensesButtonLabel),
+            FestivalTheme.primaryButton(
+              label: MaterialLocalizations.of(context).viewLicensesButtonLabel,
               onPressed: () async {
                 final packageInfo = await PackageInfo.fromPlatform();
                 showLicensePage(

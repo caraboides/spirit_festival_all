@@ -26,7 +26,7 @@ class Menu extends StatelessWidget {
     final navigator = Navigator.of(context);
     return Drawer(
       child: Container(
-        color: FestivalTheme.menuBackgroundColor,
+        decoration: FestivalTheme.menuDrawerDecoration,
         child: ListView(
           children: <Widget>[
             Image.asset(

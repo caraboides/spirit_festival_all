@@ -1183,12 +1183,7 @@ class Drive extends StatelessWidget {
     final i18n = AppLocalizations.of(context);
     return Scaffold(
       drawer: const Menu(),
-      appBar: AppBar(
-        title: Text(
-          i18n.drive,
-          style: FestivalTheme.appBarTextStyle,
-        ),
-      ),
+      appBar: FestivalTheme.appBar(i18n.drive),
       body: Center(
           child: WebView(
         initialUrl: url,

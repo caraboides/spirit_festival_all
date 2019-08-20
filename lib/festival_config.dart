@@ -29,10 +29,10 @@ const String weatherCityId = '6547727';
 
 class FestivalTheme {
   static final ThemeData theme = ThemeData(
-    primaryColor: Color(0xFFa5ab62),
-    accentColor: Color(0xFFffa035),
+    primaryColor: Color(0xFF15928c),
+    accentColor: Color(0xFFbafb00),
     buttonTheme: ButtonThemeData(
-      textTheme: ButtonTextTheme.primary,
+      textTheme: ButtonTextTheme.normal,
     ),
     textTheme: Typography.blackMountainView.copyWith(
       headline: TextStyle(
@@ -44,6 +44,7 @@ class FestivalTheme {
         fontFamily: 'No Continue',
         fontSize: 26,
         color: Colors.white,
+        shadows: _createShadows(Colors.black),
       ),
       title: TextStyle(
         fontFamily: 'No Continue',
@@ -78,4 +79,62 @@ class FestivalTheme {
   static final TextStyle menuEntryTextStyle = theme.textTheme.title.copyWith(
     color: menuFontColor,
   );
+  static final BoxDecoration menuDrawerDecoration = BoxDecoration(
+    border: Border(
+      right: BorderSide(width: 2, color: Colors.black),
+    ),
+    color: menuBackgroundColor,
+  );
+
+  static List<Shadow> _createShadows(Color color) => [
+        Shadow(
+          blurRadius: 1.0,
+          color: color,
+          offset: Offset(1.0, 1.0),
+        ),
+        Shadow(
+          blurRadius: 1.0,
+          color: color,
+          offset: Offset(1.0, -1.0),
+        ),
+        Shadow(
+          blurRadius: 1.0,
+          color: color,
+          offset: Offset(-1.0, 1.0),
+        ),
+        Shadow(
+          blurRadius: 1.0,
+          color: color,
+          offset: Offset(2.0, 2.0),
+        ),
+        Shadow(
+          blurRadius: 1.0,
+          color: color,
+          offset: Offset(-1.0, -1.0),
+        ),
+      ];
+
+  static MaterialButton primaryButton({String label, VoidCallback onPressed}) =>
+      FlatButton(
+        shape: Border(
+          top: BorderSide(color: Colors.black, width: 1),
+          left: BorderSide(color: Colors.black, width: 1),
+          bottom: BorderSide(color: Colors.black, width: 2),
+          right: BorderSide(color: Colors.black, width: 2),
+        ),
+        color: theme.accentColor,
+        onPressed: onPressed,
+        child: Text(label),
+      );
+
+  static AppBar appBar(String title) => AppBar(
+        title: Text(
+          title,
+          style: FestivalTheme.appBarTextStyle,
+        ),
+        //elevation: 0,
+        shape: Border(
+          bottom: BorderSide(color: Colors.black, width: 2),
+        ),
+      );
 }
