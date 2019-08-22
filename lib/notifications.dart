@@ -15,7 +15,7 @@ final AndroidNotificationDetails _androidPlatformChannelSpecifics =
   'Notification to remind of scheduled gigs',
   importance: Importance.Max,
   priority: Priority.High,
-  color: Color(0xFF000000),
+  color: FestivalTheme.theme.primaryColor,
 );
 FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
 int _nextNotificationId = 0;
