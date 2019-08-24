@@ -142,14 +142,16 @@ class FestivalTheme {
         ),
       );
 
-  static Widget weatherCard(Widget child) => Container(
-        height: 40,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(color: Colors.black, width: 2),
+  static Widget weatherCard(Widget child) => Material(
+        color: Color(0xFFb3dddd),
+        child: Container(
+          height: 40,
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Colors.black, width: 2),
+            ),
           ),
-          color: Color(0xFFb3dddd),
+          child: child,
         ),
-        child: child,
       );
 }

@@ -44,10 +44,10 @@ class _WeatherWidgetState extends State<WeatherWidget> {
         orElse: () => null,
       );
 
-  Widget _buildWeatherCard(Weather weather) => GestureDetector(
-        onTap: () => launch('https://openweathermap.org/city/$weatherCityId'),
-        child: FestivalTheme.weatherCard(
-          Row(
+  Widget _buildWeatherCard(Weather weather) => FestivalTheme.weatherCard(
+        InkWell(
+          onTap: () => launch('https://openweathermap.org/city/$weatherCityId'),
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
