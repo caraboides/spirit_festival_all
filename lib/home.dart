@@ -83,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           EventListView(
             eventFilter:
                 date != null ? Schedule.dayOf(date) : Schedule.allBandsOf,
-            bandView: date == null,
+            date: date,
             openEventDetails: (event) => _openEventDetails(context, event),
             favoritesOnly: favoritesOnly,
           ),

@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
+import 'package:spirit/utils.dart';
 
 import 'festival_config.dart';
 import 'i18n.dart';
@@ -15,15 +16,17 @@ class EventListView extends StatefulWidget {
   const EventListView({
     Key key,
     this.eventFilter,
-    this.bandView,
+    this.date,
     this.openEventDetails,
     this.favoritesOnly,
   }) : super(key: key);
 
   final EventFilter eventFilter;
-  final bool bandView;
+  final DateTime date;
   final ValueChanged<Event> openEventDetails;
   final bool favoritesOnly;
+
+  bool get bandView => date == null;
 
   @override
   State<StatefulWidget> createState() => EventListViewState();
@@ -60,7 +63,7 @@ class EventListViewState extends State<EventListView> {
       if (mounted) {
         final now = DateTime.now();
         final index = getEvents(MyScheduleController.of(context)).indexWhere(
-            (event) => !now.isBefore(event.start) && !now.isAfter(event.end));
+            (event) => now.isBefore(event.start) || now.isBefore(event.end));
         if (index >= 0) {
           _scrollController.animateTo(
             max(index - 2, 0) * _listItemHeight,
@@ -78,17 +81,35 @@ class EventListViewState extends State<EventListView> {
     final i18n = AppLocalizations.of(context);
     final now = DateTime.now();
     final events = getEvents(myScheduleController);
-    final items = events.map((event) => CustomListItemTwo(
-          key: Key(event.id),
-          isLiked: myScheduleController.mySchedule.isEventLiked(event.id),
-          bandname: event.bandName,
-          start: event.start,
-          stage: event.stage,
-          toggleEvent: () => myScheduleController.toggleEvent(i18n, event),
-          bandView: widget.bandView,
-          openEventDetails: () => widget.openEventDetails(event),
-          isPlaying: !now.isBefore(event.start) && !now.isAfter(event.end),
-        ));
+    final nextOrCurrentIndex = widget.date != null &&
+            isSameDay(now, widget.date, offset: daySwitchOffset)
+        ? events.indexWhere(
+            (event) => now.isBefore(event.start) || now.isBefore(event.end))
+        : -1;
+    var currentlyPlaying = false;
+    var items = events.map<Widget>((event) {
+      final isPlaying = !now.isBefore(event.start) && !now.isAfter(event.end);
+      currentlyPlaying = currentlyPlaying || isPlaying;
+      return CustomListItemTwo(
+        key: Key(event.id),
+        isLiked: myScheduleController.mySchedule.isEventLiked(event.id),
+        bandname: event.bandName,
+        start: event.start,
+        stage: event.stage,
+        toggleEvent: () => myScheduleController.toggleEvent(i18n, event),
+        bandView: widget.bandView,
+        openEventDetails: () => widget.openEventDetails(event),
+        isPlaying: isPlaying,
+      );
+    });
+    if (nextOrCurrentIndex >= 0 && !currentlyPlaying) {
+      items = items.insert(
+          nextOrCurrentIndex,
+          Container(
+            height: 2,
+            color: FestivalTheme.theme.accentColor,
+          ));
+    }
     if (widget.favoritesOnly && items.isEmpty) {
       return Expanded(
         child: Column(
