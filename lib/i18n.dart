@@ -33,6 +33,7 @@ class AppLocalizations {
     this.fontByFormat,
     this.appDescriptionFormat,
     this.sourceCodeUnder,
+    this.language,
   });
   /*: TODO(SF) why does this not work?
         this.timeFormat = DateFormat(timeFormatString, locale),
@@ -47,6 +48,7 @@ class AppLocalizations {
   final String addEventToSchedule;
   final String removeEventFromSchedule;
   final String locale;
+  final String language;
   final String eventDetailsHeader;
   final String eventNotificationFormat;
   final String about;
@@ -116,6 +118,7 @@ final AppLocalizations de = AppLocalizations(
   addEventToSchedule: 'Füge Auftritt zum Plan hinzu',
   removeEventFromSchedule: 'Entferne Auftritt vom Plan',
   locale: 'de_DE',
+  language: 'de',
   eventDetailsHeader: 'Band Details',
   eventNotificationFormat: '{band} spielen um {time} auf der {stage}!',
   about: 'Über diese App',
@@ -145,6 +148,7 @@ final AppLocalizations en = AppLocalizations(
   addEventToSchedule: 'Add gig to schedule',
   removeEventFromSchedule: 'Remove gig from schedule',
   locale: 'en_US',
+  language: 'en',
   eventDetailsHeader: 'Band Details',
   eventNotificationFormat: '{band} plays at {time} on the {stage}!',
   about: 'About',

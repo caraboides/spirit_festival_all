@@ -111,10 +111,20 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         appBar: AppBar(
           bottom: TabBar(
             tabs: [
-              Tab(text: i18n.bands),
+              Tab(
+                child: Text(
+                  i18n.bands,
+                  style: FestivalTheme.tabTextStyle,
+                ),
+              ),
               ...List.generate(
                 days.length,
-                (index) => Tab(text: i18n.dayTitle(index + 1)),
+                (index) => Tab(
+                  child: Text(
+                    i18n.dayTitle(index + 1),
+                    style: FestivalTheme.tabTextStyle,
+                  ),
+                ),
               ),
             ],
           ),
@@ -123,10 +133,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             width: 158,
             height: 40,
           ),
-          /*Text(
-            festivalName,
-            style: FestivalTheme.appBarTextStyle,
-          ),*/
           actions: <Widget>[
             Icon(favoritesOnly ? Icons.star : Icons.star_border),
             Switch(

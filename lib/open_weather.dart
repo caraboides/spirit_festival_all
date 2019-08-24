@@ -236,9 +236,9 @@ class WeatherStation {
   /// Fetch current weather based on geographical coordinates
   /// Result is JSON.
   /// For API documentation, see: https://openweathermap.org/current
-  Future<Weather> currentWeather() async {
+  Future<Weather> currentWeather(String language) async {
     try {
-      final currentWeather = await _requestOpenWeatherAPI(WEATHER);
+      final currentWeather = await _requestOpenWeatherAPI(WEATHER, language);
       return Weather(currentWeather);
     } catch (exception) {
       print(exception);
@@ -249,10 +249,10 @@ class WeatherStation {
   /// Fetch current weather based on geographical coordinates.
   /// Result is JSON.
   /// For API documentation, see: https://openweathermap.org/forecast5
-  Future<List<Weather>> fiveDayForecast() async {
+  Future<List<Weather>> fiveDayForecast(language) async {
     var forecasts = <Weather>[];
     try {
-      final jsonForecasts = await _requestOpenWeatherAPI(FORECAST);
+      final jsonForecasts = await _requestOpenWeatherAPI(FORECAST, language);
       final List<dynamic> forecastsJson = jsonForecasts['list'];
       forecasts = forecastsJson.map((w) => Weather(w)).toList();
     } catch (exception) {
@@ -261,11 +261,12 @@ class WeatherStation {
     return forecasts;
   }
 
-  Future<Map<String, dynamic>> _requestOpenWeatherAPI(String tag) async {
+  Future<Map<String, dynamic>> _requestOpenWeatherAPI(
+      String tag, String language) async {
     /// Check if device is allowed to get location
     /// Build HTTP get url by passing the required parameters
     final url = 'http://api.openweathermap.org/data/2.5/'
-        '$tag?$geoLocationQuery&appid=$_apiKey';
+        '$tag?$geoLocationQuery&appid=$_apiKey&lang=$language';
 
     /// Send HTTP get response with the url
     final response = await http.get(url);

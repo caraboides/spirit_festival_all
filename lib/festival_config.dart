@@ -85,6 +85,10 @@ class FestivalTheme {
     ),
     color: menuBackgroundColor,
   );
+  static final TextStyle tabTextStyle = TextStyle(
+    fontFamily: 'No Continue',
+    fontSize: 18,
+  );
 
   static List<Shadow> _createShadows(Color color) => [
         Shadow(
@@ -136,5 +140,16 @@ class FestivalTheme {
         shape: Border(
           bottom: BorderSide(color: Colors.black, width: 2),
         ),
+      );
+
+  static Widget weatherCard(Widget child) => Container(
+        height: 40,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: Colors.black, width: 2),
+          ),
+          color: Color(0xFFb3dddd),
+        ),
+        child: child,
       );
 }
