@@ -95,6 +95,7 @@ class EventListViewState extends State<EventListView> {
         isLiked: myScheduleController.mySchedule.isEventLiked(event.id),
         bandname: event.bandName,
         start: event.start,
+        end: event.end,
         stage: event.stage,
         toggleEvent: () => myScheduleController.toggleEvent(i18n, event),
         bandView: widget.bandView,
@@ -149,6 +150,7 @@ class CustomListItemTwo extends StatelessWidget {
     this.isLiked,
     this.bandname,
     this.start,
+    this.end,
     this.stage,
     this.toggleEvent,
     this.bandView,
@@ -159,6 +161,7 @@ class CustomListItemTwo extends StatelessWidget {
   final bool isLiked;
   final String bandname;
   final DateTime start;
+  final DateTime end;
   final String stage;
   final VoidCallback toggleEvent;
   final bool bandView;
@@ -196,6 +199,7 @@ class CustomListItemTwo extends StatelessWidget {
                     child: _EventDescription(
                       bandname: bandname,
                       start: start,
+                      end: end,
                       stage: stage,
                       bandView: bandView,
                     ),
@@ -215,12 +219,14 @@ class _EventDescription extends StatelessWidget {
     Key key,
     this.bandname,
     this.start,
+    this.end,
     this.stage,
     this.bandView,
   }) : super(key: key);
 
   final String bandname;
   final DateTime start;
+  final DateTime end;
   final String stage;
   final bool bandView;
 
@@ -240,11 +246,23 @@ class _EventDescription extends StatelessWidget {
           style: FestivalTheme.eventBandTextStyle,
         ),
         const SizedBox(height: 4),
-        Text(
-          '${formatter.format(start.toLocal())}',
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: FestivalTheme.eventDateTextStyle,
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('${formatter.format(start.toLocal())}',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: FestivalTheme.eventDateTextStyle),
+            Text(
+              ' - ${i18n.timeFormat.format(end.toLocal())}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: bandView
+                  ? FestivalTheme.eventDateTextStyle
+                  : FestivalTheme.eventDateTextStyle
+                      .copyWith(color: Colors.black.withOpacity(0.33)),
+            ),
+          ],
         ),
         const SizedBox(height: 2),
         Text(

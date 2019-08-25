@@ -152,7 +152,8 @@ class EventDetailView extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(left: 15),
                     child: Text(
-                      '${i18n.dateTimeFormat.format(event.start.toLocal())}',
+                      '${i18n.dateTimeFormat.format(event.start.toLocal())} - '
+                      '${i18n.timeFormat.format(event.end.toLocal())}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: FestivalTheme.eventDateTextStyle,
