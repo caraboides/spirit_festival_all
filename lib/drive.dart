@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'festival_config.dart';
-import 'i18n.dart';
 import 'menu.dart';
 
 class Drive extends StatelessWidget {
@@ -22,7 +21,6 @@ class Drive extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final i18n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     return Scaffold(
       drawer: const Menu(),

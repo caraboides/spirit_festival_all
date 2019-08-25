@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:immortal/immortal.dart';
 import 'package:optional/optional.dart';
 
@@ -69,13 +70,14 @@ class ScheduleProviderState extends State<ScheduleProvider> {
           .then<ImmortalList<Event>>((v) => _parseJsonEvents(jsonDecode(v)));
 
   Future<Optional<ImmortalList<Event>>> _loadRemoteData() async {
-    // final response = await http.get(
-    //     'https://lilafestivalhub.herokuapp.com/schedule?festival=$festivalId');
-    // if (response.statusCode == 200) {
-    //   final Map<String, dynamic> json = jsonDecode(response.body);
-    //   appStorage.storeJson(appStorageKey, json);
-    //   return Optional.of(_parseJsonEvents(json));
-    // }
+    final response = await http.get(
+        'https://lilafestivalhub.herokuapp.com/schedule?festival=$festivalId');
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> json =
+          jsonDecode(utf8.decode(response.bodyBytes));
+      appStorage.storeJson(appStorageKey, json);
+      return Optional.of(_parseJsonEvents(json));
+    }
     return Optional.empty();
   }
 

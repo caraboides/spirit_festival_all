@@ -22,7 +22,7 @@ Duration daySwitchOffset = Duration(hours: 3);
 
 const String festivalName = 'Spirit';
 const String festivalFullName = 'Spirit Festival 2019';
-const String festivalId = 'spirit2019';
+const String festivalId = 'spirit_2019';
 
 const String geoLocationQuery = 'lat=51.59&lon=12.59';
 const String weatherCityId = '6547727';

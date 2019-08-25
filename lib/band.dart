@@ -1,11 +1,15 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:immortal/immortal.dart';
 import 'package:optional/optional_internal.dart';
 
 import 'app_storage.dart' as appStorage;
+import 'festival_config.dart';
 import 'model.dart';
+
+const appStorageKey = 'bands.json';
 
 class Bands extends InheritedWidget {
   const Bands({
@@ -39,7 +43,7 @@ class BandsProvider extends StatefulWidget {
 
 class BandsProviderState extends State<BandsProvider> {
   Future<ImmortalMap<String, BandData>> _loadInitialData() async {
-    return appStorage.loadJson('bands.json').then((onValue) {
+    return appStorage.loadJson(appStorageKey).then((onValue) {
       if (onValue.isPresent) {
         return Future.value(_parseJsonBands(onValue.value));
       }
@@ -54,13 +58,14 @@ class BandsProviderState extends State<BandsProvider> {
               (v) => _parseJsonBands(jsonDecode(v)));
 
   Future<Optional<ImmortalMap<String, BandData>>> _loadRemoteData() async {
-    // final response = await http.get(
-    //     'https://lilafestivalhub.herokuapp.com/bands?festival=$festivalId');
-    // if (response.statusCode == 200) {
-    //   final Map<String, dynamic> json = jsonDecode(response.body);
-    //   appStorage.storeJson(appStorageKey, json);
-    //   return Optional.of(_parseJsonBands(json));
-    // }
+    final response = await http.get(
+        'https://lilafestivalhub.herokuapp.com/bands?festival=$festivalId');
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> json =
+          jsonDecode(utf8.decode(response.bodyBytes));
+      appStorage.storeJson(appStorageKey, json);
+      return Optional.of(_parseJsonBands(json));
+    }
     return Optional.empty();
   }
 
