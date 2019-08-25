@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
+import 'package:optional/optional.dart';
 
 import 'app_storage.dart' as appStorage;
 import 'festival_config.dart';
@@ -9,6 +10,8 @@ import 'model.dart';
 import 'utils.dart';
 
 typedef EventFilter = ImmortalList<Event> Function(BuildContext context);
+
+const appStorageKey = 'schedule.json';
 
 class Schedule extends InheritedWidget {
   const Schedule({
@@ -52,7 +55,7 @@ class ScheduleProvider extends StatefulWidget {
 
 class ScheduleProviderState extends State<ScheduleProvider> {
   Future<ImmortalList<Event>> _loadInitialData() async {
-    return appStorage.loadJson('schedule.json').then((onValue) {
+    return appStorage.loadJson(appStorageKey).then((onValue) {
       if (onValue.isPresent) {
         return Future.value(_parseJsonEvents(onValue.value));
       }
@@ -64,6 +67,17 @@ class ScheduleProviderState extends State<ScheduleProvider> {
       DefaultAssetBundle.of(context)
           .loadString('assets/initial_schedule.json')
           .then<ImmortalList<Event>>((v) => _parseJsonEvents(jsonDecode(v)));
+
+  Future<Optional<ImmortalList<Event>>> _loadRemoteData() async {
+    // final response = await http.get(
+    //     'https://lilafestivalhub.herokuapp.com/schedule?festival=$festivalId');
+    // if (response.statusCode == 200) {
+    //   final Map<String, dynamic> json = jsonDecode(response.body);
+    //   appStorage.storeJson(appStorageKey, json);
+    //   return Optional.of(_parseJsonEvents(json));
+    // }
+    return Optional.empty();
+  }
 
   ImmortalList<Event> _parseJsonEvents(Map<String, dynamic> jsonMap) =>
       ImmortalMap<String, dynamic>(jsonMap).mapEntries<Event>(_parseJsonEvent);
@@ -84,6 +98,13 @@ class ScheduleProviderState extends State<ScheduleProvider> {
   void initState() {
     super.initState();
     _loadInitialData().then((newEvents) {
+      _loadRemoteData().then((remoteEvents) {
+        if (remoteEvents.isPresent) {
+          setState(() {
+            _events = remoteEvents.value;
+          });
+        }
+      });
       setState(() {
         _events = newEvents;
       });

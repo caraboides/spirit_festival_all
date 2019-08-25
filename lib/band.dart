@@ -53,6 +53,17 @@ class BandsProviderState extends State<BandsProvider> {
           .then<ImmortalMap<String, BandData>>(
               (v) => _parseJsonBands(jsonDecode(v)));
 
+  Future<Optional<ImmortalMap<String, BandData>>> _loadRemoteData() async {
+    // final response = await http.get(
+    //     'https://lilafestivalhub.herokuapp.com/bands?festival=$festivalId');
+    // if (response.statusCode == 200) {
+    //   final Map<String, dynamic> json = jsonDecode(response.body);
+    //   appStorage.storeJson(appStorageKey, json);
+    //   return Optional.of(_parseJsonBands(json));
+    // }
+    return Optional.empty();
+  }
+
   ImmortalMap<String, BandData> _parseJsonBands(dynamic jsonMap) =>
       ImmortalMap<String, BandData>(
           jsonMap.map<String, BandData>(_parseJsonBand));
@@ -80,6 +91,13 @@ class BandsProviderState extends State<BandsProvider> {
   void initState() {
     super.initState();
     _loadInitialData().then((bands) {
+      _loadRemoteData().then((remoteBands) {
+        if (remoteBands.isPresent) {
+          setState(() {
+            _bands = remoteBands.value;
+          });
+        }
+      });
       setState(() {
         _bands = bands;
       });

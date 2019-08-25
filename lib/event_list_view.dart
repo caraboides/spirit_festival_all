@@ -249,10 +249,12 @@ class _EventDescription extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text('${formatter.format(start.toLocal())}',
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: FestivalTheme.eventDateTextStyle),
+            Text(
+              '${formatter.format(start.toLocal())}',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: FestivalTheme.eventDateTextStyle,
+            ),
             Text(
               ' - ${i18n.timeFormat.format(end.toLocal())}',
               maxLines: 1,
