@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:spirit/utils.dart';
 
 import 'event_detail_view.dart';
 import 'event_list_view.dart';
@@ -92,12 +93,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
   int get _initialTab {
     final now = DateTime.now();
-    final startOfDay = DateTime(now.year, now.month, now.day);
-    final index = days.indexOf(startOfDay);
-    if (index >= 0) {
-      return index + 1;
-    }
-    return 0;
+    return days.indexWhere(
+          (day) => isSameDay(now, day, offset: daySwitchOffset),
+        ) +
+        1;
   }
 
   @override
