@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:dcache/dcache.dart';
 import 'package:spirit/i18n.dart';
@@ -38,11 +40,18 @@ class _WeatherWidgetState extends State<WeatherWidget> {
     }
   }
 
-  Weather getWeatherForDate(List<Weather> weathers, DateTime date) =>
-      weathers.firstWhere(
-        (current) => isSameDay(current.date, date) && current.date.hour == 14,
-        orElse: () => null,
-      );
+  Weather getWeatherForDate(List<Weather> weathers, DateTime date) {
+    final now = DateTime.now();
+    final isToday = isSameDay(now, date);
+    final minHour = isToday ? max(14, now.hour) : 14;
+    return weathers.lastWhere(
+      (current) =>
+          isSameDay(current.date, date) &&
+          current.date.hour <= minHour &&
+          current.date.hour >= 14,
+      orElse: () => null,
+    );
+  }
 
   Widget _buildWeatherCard(Weather weather) => FestivalTheme.weatherCard(
         InkWell(
