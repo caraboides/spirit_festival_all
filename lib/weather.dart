@@ -2,10 +2,10 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:dcache/dcache.dart';
-import 'package:spirit/i18n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'festival_config.dart';
+import 'i18n.dart';
 import 'open_weather.dart';
 import 'utils.dart';
 

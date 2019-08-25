@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:spirit/utils.dart';
 
 import 'event_detail_view.dart';
 import 'event_list_view.dart';
@@ -10,6 +9,7 @@ import 'i18n.dart';
 import 'menu.dart';
 import 'model.dart';
 import 'schedule.dart';
+import 'utils.dart';
 import 'weather.dart';
 
 class HomeScreen extends StatefulWidget {

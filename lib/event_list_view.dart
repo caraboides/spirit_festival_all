@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:immortal/immortal.dart';
-import 'package:spirit/utils.dart';
 
 import 'festival_config.dart';
 import 'i18n.dart';
 import 'model.dart';
 import 'my_schedule.dart';
 import 'schedule.dart';
+import 'utils.dart';
 
 const double _listItemHeight = 70;
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:spirit/festival_config.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'i18n.dart';
+import 'festival_config.dart';
 
 class Menu extends StatelessWidget {
   const Menu();
