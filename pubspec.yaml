@@ -19,7 +19,6 @@ dependencies:
   flutter_local_notifications: ^0.8.0
   url_launcher: ^5.1.1
   dcache: ^0.3.0
-  cloud_firestore: ^0.12.8+1
   immortal: ^1.1.0
   cached_network_image: ^1.1.1
   package_info: ^0.4.0+6
