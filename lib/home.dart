@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     switch (state) {
       case AppLifecycleState.inactive:
       case AppLifecycleState.paused:
-      case AppLifecycleState.suspending:
+      case AppLifecycleState.detached:
         _rebuildTimer.cancel();
         break;
       case AppLifecycleState.resumed:
